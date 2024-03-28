@@ -37,12 +37,8 @@ for (let i = 0; i < goodsParaLst.length; i++) {
         goodLst.push(new Goods(img_path, goodsParaLst[i][0], goodsParaLst[i][2], goodsParaLst[i][1]));
     }
 }
-//console.log(goodLst);
-generateHomeHTML(goodLst);
 
 
-let cart = init_cart();
-document.querySelector('.cart-num').innerHTML = String(cart.product_num);
 
 function generateHomeHTML(goodLst) {
     let product_grid = document.querySelector('.product-grid');
@@ -55,6 +51,8 @@ function generateHomeHTML(goodLst) {
             product_discount_str = `<p class="product-discount">${goodLst[i].discount_rate}折</p>`;
             discount_price_str = `<p class='discount-price'>$${goodLst[i].discount_price}</p>`;
         }
+
+        //Template literals (Template strings)
         curHtml += `<div class="product-block">
                         <a href="product.html">
                             <div class="product-image-row">
@@ -81,7 +79,7 @@ function generateHomeHTML(goodLst) {
                         </a>
                     </div>`
     }
-    console.log(typeof curHtml);
+    //console.log(document.querySelector('.product-grid').innerHTML);
     //document.querySelector('.product-grid').innerHTML = curHtml;
 }
 
@@ -102,20 +100,9 @@ function init_cart() {
     return cart;
 }
 
-function save_data(keyName, value) {
-    const jsonValue = JSON.stringify(value);
-    localStorage.setItem(keyName, jsonValue);
-}
 
-window.purchase = ()=>{
-    const buyNum = document.querySelector('.buy-num').value;
-    cart.product_num += Number(buyNum);
-    cart.product1.num += Number(buyNum);
-    document.querySelector('.cart-num').innerHTML = String(cart.product_num);
-    save_data('cart', cart);
-}
-export {cart, save_data}
+generateHomeHTML(goodLst);
+let cart = init_cart();
+document.querySelector('.cart-num').innerHTML = String(cart.product_num);
 
-// window解説　
-// https://elsammit-beginnerblg.hatenablog.com/entry/2022/05/19/234821#exportimport%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%88%86%E5%89%B2%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B
-
+export {cart}

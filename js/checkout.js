@@ -1,11 +1,11 @@
-import {cart,save_data} from './index.js'
+import {cart} from './home.js'
+import {save_data} from './product.js'
 
-update_buyname();
+update_buynum();
 update_checkout_summary();
 
 
-
-function update_buyname(){
+function update_buynum(){
     const buyNum = document.querySelector('.buy-num').value;
     document.querySelector('.buy-num').value=cart.product1.num;
 }
@@ -61,8 +61,7 @@ window.update_product = ()=>{
         }
     });
     save_data(cart);
-    update_buyname();
-    console.log("into update checkout")
+    //console.log("into update checkout")
     update_checkout_summary();
 }
 
